@@ -1,0 +1,26 @@
+body {
+  padding-inline: 10%;
+  /* justify-content: center; */
+  background-image: linear-gradient(#00bcd4, #000000, #00bcd4);
+  /* radial-gradient(red, blue, red); */
+  color: white;
+}
+
+footer {
+  padding-block: 5%;
+}
+
+#aboutme {
+  display: flex;
+  justify-content: space-between;
+}
+
+#spriteimg {
+  display: flex;
+  flex-grow: 1;
+  justify-content: flex-start;
+}
+
+#pipelinesection {
+  padding-top: 120%;
+}
