@@ -7,7 +7,14 @@ body {
 }
 
 footer {
-  padding-block: 5%;
+  margin-block: 5%;
+  padding: 2%;
+  background-image: linear-gradient(rgba(128, 128, 128, 0.158), #0000006c);
+  background-color: gray;
+}
+
+h1 {
+  font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 #aboutme {
@@ -21,6 +28,22 @@ footer {
   justify-content: flex-start;
 }
 
+#spriteimg img {
+  max-width: 200%;
+  height: auto;
+  object-fit: contain;
+}
+
 #pipelinesection {
   padding-top: 120%;
+}
+
+@media (width < 960px) {
+  #aboutme {
+    flex-direction: column;
+  }
+  #spriteimg {
+    flex-grow: 1;
+    justify-content: flex-start;
+  }
 }
