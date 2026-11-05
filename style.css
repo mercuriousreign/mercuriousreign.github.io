@@ -1,10 +1,22 @@
 body {
-  padding-inline: 10%;
+  padding-inline: 5%;
   /* justify-content: center; */
   background-image: linear-gradient(#00bcd4, #000000, #00bcd4);
+
   /* radial-gradient(red, blue, red); */
   color: white;
   font-kerning: 10%;
+}
+
+.mainbody {
+  /* background-image: repeating-linear-gradient(
+    120deg,
+    transparent,
+    transparent,
+    transparent,
+    black 23px
+  ); */
+  background-image: linear-gradient(#00bcd4, #000000, #00bcd4);
 }
 
 footer {
@@ -14,24 +26,83 @@ footer {
   background-color: gray;
 }
 
+p {
+  font-family:
+    'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+    'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+ul {
+  list-style-type: square;
+}
+
+ol {
+  list-style-type: bengali;
+}
+
+li {
+  /* font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; */
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: larger;
+  background-color: #00000046;
+
+  padding-block: 0.1%;
+  margin-block: 2%;
+}
+
 h1 {
   font-family: Georgia, 'Times New Roman', Times, serif;
+  /* font-family: fantasy; */
+  letter-spacing: 20%;
+  background: linear-gradient(45deg, black, transparent);
+}
+
+h2 {
+  /* font-family: Georgia, 'Times New Roman', Times, serif; */
+  font-family: fantasy;
+  letter-spacing: 20%;
+  background: linear-gradient(45deg, black, transparent);
+  background-clip: text;
+}
+
+h3 {
+  font-family: fantasy;
+  letter-spacing: 20%;
+  background: linear-gradient(45deg, black, transparent);
 }
 
 #aboutme {
   display: flex;
   justify-content: space-between;
-  padding: 2%;
+  /* padding-inline: 2%; */
+
+  padding-bottom: 30%;
+  padding-top: 2%;
+}
+
+#homeplacement {
+  width: 2em;
+  height: 2em;
 }
 
 #information {
-  margin: 2%;
+  padding: 2%;
+  border-width: 1.5em;
+  border-style: outset;
+  border-color: black;
 }
 
 #spriteimg {
   display: flex;
   flex-grow: 1;
   justify-content: flex-end;
+  background-image: repeating-linear-gradient(
+    120deg,
+    transparent,
+    transparent,
+    transparent,
+    black 23px
+  );
 }
 
 #firstimg {
@@ -64,14 +135,21 @@ h1 {
   justify-content: right;
   padding: 2%;
   margin-top: 10%;
+
   /* display: flex;
   justify-content: space-between;
   align-content: stretch; */
 }
 
+a {
+  /* background-image: linear-gradient(rgba(128, 128, 128, 0.158), #0000006c); */
+  color: wheat;
+  font-weight: normal;
+}
+
 a:hover {
   background-image: linear-gradient(rgba(128, 128, 128, 0.158), #0000006c);
-  color: wheat;
+  color: rgb(179, 241, 245);
   font-weight: 900;
 }
 
@@ -82,7 +160,7 @@ a:hover {
 }
 
 #pipelinesection {
-  padding-top: 120%;
+  padding-top: 0%;
 }
 
 @media (width < 960px) {
