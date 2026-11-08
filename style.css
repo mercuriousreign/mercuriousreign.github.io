@@ -8,6 +8,23 @@ body {
   font-kerning: 10%;
 }
 
+.lightmode {
+  background-image: linear-gradient(#afc4d3, #e4e0e0, #afc4d3);
+  color: rgb(87, 83, 83);
+
+  h1 {
+    background: linear-gradient(45deg, #d3dce2, transparent);
+  }
+
+  h2 {
+    background: linear-gradient(45deg, #d3dce2, transparent);
+  }
+
+  h3 {
+    background: linear-gradient(45deg, #d3dce2, transparent);
+  }
+}
+
 .mainbody {
   /* background-image: repeating-linear-gradient(
     120deg,
