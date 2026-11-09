@@ -9,8 +9,6 @@ function light_toggle() {
   contentbody.classList.toggle('lightmode');
 }
 
-//tggl.addEventListener('click', light_toggle);
-
 //3. Random Fact Generator
 function random_fact() {
   let facts = [
@@ -30,10 +28,18 @@ function greeting() {
   let nameplace = document.getElementById('nametext');
   let welcome = document.getElementById('msg');
   let greeting = document.getElementById('greeting');
-  welcome.classList.toggle('hide');
-  alert(`welcome to the website ${nameplace.value}`);
-  greeting.textContent = `welcome to the website ${nameplace.value}`;
+
+  if (nameplace.value != '') {
+    welcome.classList.toggle('hide');
+    alert(`welcome to the website ${nameplace.value}`);
+    greeting.textContent = `welcome to the website ${nameplace.value}`;
+  } else {
+    alert('Invalid name');
+    nameplace.value = '';
+  }
 }
+
+//5. DOM Manipulation & Events (Done )
 
 /* 
 Challenge Requirements
