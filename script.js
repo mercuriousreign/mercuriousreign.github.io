@@ -20,8 +20,7 @@ function random_fact() {
     'randomness',
     'Doesnt like wearing socks',
   ];
-  let number = Math.floor(Math.random() * facts.length - 1);
-
+  let number = Math.floor(Math.random() * facts.length);
   factplace.textContent = `${number} fact is ${facts[number]}`;
 }
 
