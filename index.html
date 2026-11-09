@@ -7,6 +7,14 @@
   </head>
   <body class="lightmode">
     <button onclick="light_toggle()">toogle light</button>
+    <div class="welcomespace">
+      <div id="msg">
+        <button onclick="greeting()">please enter your name</button>
+        <input id="nametext"></input>
+      </div>
+      <h2 id="greeting"></h2>
+    </div>
+
     <h2>
       Once upon a time there was a wanderer, who decided it was time to make her
       own closure
@@ -30,6 +38,9 @@
       Will she achieve her dreams? or will she keep staring off at the distance,
       never putting forth the first line in the story
     </h3>
+
+    <button onclick="random_fact()">Find a randomfact</button>
+    <h3 id="randomfact"></h3>
     <main>
       <section>
         <p>

@@ -25,6 +25,10 @@ body {
   }
 }
 
+.hide {
+  display: none;
+}
+
 .mainbody {
   /* background-image: repeating-linear-gradient(
     120deg,
