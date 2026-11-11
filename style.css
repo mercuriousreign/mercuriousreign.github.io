@@ -23,6 +23,10 @@ body {
   h3 {
     background: linear-gradient(45deg, #d3dce2, transparent);
   }
+
+  footer {
+    background-color: whitesmoke;
+  }
 }
 
 .hide {
@@ -104,6 +108,15 @@ h3 {
 #homeplacement {
   width: 2em;
   height: 2em;
+}
+
+.icons {
+  width: 2em;
+  height: 2em;
+}
+
+.lightbtn {
+  float: right;
 }
 
 #information {
