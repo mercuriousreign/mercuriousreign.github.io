@@ -1,12 +1,14 @@
 //1. External JavaScript
 let contentbody = document.querySelector('body');
-const tggl = document.getElementById('toggle');
+let lightbtn = document.getElementById('lightbtn');
+let offbtn = document.getElementById('offmode');
 let factplace = document.getElementById('randomfact');
 
 //2. Light / Dark Mode Toggle
 function light_toggle() {
   console.log('button registering');
   contentbody.classList.toggle('lightmode');
+  offbtn.classList.toggle('hide');
 }
 
 //3. Random Fact Generator
