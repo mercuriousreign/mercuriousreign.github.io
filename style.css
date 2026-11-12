@@ -27,6 +27,14 @@ body {
   footer {
     background-color: whitesmoke;
   }
+
+  button {
+    padding-block: 2%;
+    padding-inline: 4%;
+    background-image: linear-gradient(#afc4d3, #e4e0e0, #afc4d3);
+    color: white;
+    color: rgb(87, 83, 83);
+  }
 }
 
 #welcomespace {
@@ -40,6 +48,10 @@ body {
 }
 
 #messagebox {
+  h1 {
+    background-image: linear-gradient(#afc4d3, #e4e0e0, #afc4d3);
+    color: rgb(87, 83, 83);
+  }
   padding: 4%;
   background-image: linear-gradient(
     45deg,
@@ -56,6 +68,25 @@ body {
 #msg {
   display: flex;
   justify-content: space-between;
+}
+
+#nametext {
+  width: 100%;
+}
+
+button {
+  padding-block: 2%;
+  padding-inline: 4%;
+  background-image: linear-gradient(#00bcd4, #000000, #00bcd4);
+  color: white;
+}
+
+#factsspace {
+  display: flex;
+}
+
+#randomfact {
+  padding-left: 2%;
 }
 
 .mainbody {

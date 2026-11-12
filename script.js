@@ -22,7 +22,7 @@ function random_fact() {
     'Does not like wearing socks for in place of using heater',
   ];
   let number = Math.floor(Math.random() * facts.length);
-  factplace.textContent = `${number} fact is ${facts[number]}`;
+  factplace.textContent = ` ${facts[number]}`;
 }
 
 //4 Personalized Greetings
@@ -38,7 +38,7 @@ function greeting() {
     welcomespace.classList.toggle('hide');
 
     alert(`Welcome to the website ${nameplace.value}`);
-    greeting.textContent = `Welcome to the website ${nameplace.value}`;
+    greeting.textContent = `Welcome to the website ${nameplace.value}!!`;
   } else {
     alert('Invalid name');
     nameplace.value = '';
