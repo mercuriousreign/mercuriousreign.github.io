@@ -15,11 +15,11 @@ function light_toggle() {
 //3. Random Fact Generator
 function random_fact() {
   let facts = [
-    'random 2',
-    'random 1',
-    'random 4',
-    'randomness',
-    'Doesnt like wearing socks',
+    'Freezes when asked to talk about herself',
+    'MBTI scale is INFP',
+    'Favourite console is GameboyAdvance',
+    'Likes the color teal',
+    'Does not like wearing socks for in place of using heater',
   ];
   let number = Math.floor(Math.random() * facts.length);
   factplace.textContent = `${number} fact is ${facts[number]}`;
