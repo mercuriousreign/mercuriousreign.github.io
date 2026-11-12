@@ -32,8 +32,9 @@ body {
     padding-block: 2%;
     padding-inline: 4%;
     background-image: linear-gradient(#afc4d3, #e4e0e0, #afc4d3);
-    color: white;
+
     color: rgb(87, 83, 83);
+    font-weight: bolder;
   }
 }
 
@@ -79,6 +80,7 @@ button {
   padding-inline: 4%;
   background-image: linear-gradient(#00bcd4, #000000, #00bcd4);
   color: white;
+  font-weight: bold;
 }
 
 #factsspace {
