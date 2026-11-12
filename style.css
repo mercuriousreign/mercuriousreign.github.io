@@ -29,8 +29,33 @@ body {
   }
 }
 
-.hide {
-  display: none;
+#welcomespace {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: radial-gradient(transparent, black);
+  inset: 0;
+  z-index: 2;
+}
+
+#messagebox {
+  padding: 4%;
+  background-image: linear-gradient(
+    45deg,
+    transparent,
+    rgba(0, 0, 0, 0.329),
+    transparent
+  );
+  border: rgb(0, 38, 255);
+  border-width: inherit;
+  border-style: dotted;
+  fill: white;
+}
+
+#msg {
+  display: flex;
+  justify-content: space-between;
 }
 
 .mainbody {
@@ -195,6 +220,10 @@ a:hover {
 
 #pipelinesection {
   padding-top: 0%;
+}
+
+.hide {
+  display: none !important;
 }
 
 @media (width < 960px) {

@@ -3,6 +3,7 @@ let contentbody = document.querySelector('body');
 let lightbtn = document.getElementById('lightbtn');
 let offbtn = document.getElementById('offmode');
 let factplace = document.getElementById('randomfact');
+let welcomespace = document.getElementById('welcomespace');
 
 //2. Light / Dark Mode Toggle
 function light_toggle() {
@@ -29,12 +30,15 @@ function random_fact() {
 function greeting() {
   let nameplace = document.getElementById('nametext');
   let welcome = document.getElementById('msg');
+
   let greeting = document.getElementById('greeting');
 
   if (nameplace.value != '') {
     welcome.classList.toggle('hide');
-    alert(`welcome to the website ${nameplace.value}`);
-    greeting.textContent = `welcome to the website ${nameplace.value}`;
+    welcomespace.classList.toggle('hide');
+
+    alert(`Welcome to the website ${nameplace.value}`);
+    greeting.textContent = `Welcome to the website ${nameplace.value}`;
   } else {
     alert('Invalid name');
     nameplace.value = '';
