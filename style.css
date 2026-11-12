@@ -8,6 +8,89 @@ body {
   font-kerning: 10%;
 }
 
+.lightmode {
+  background-image: linear-gradient(#afc4d3, #e4e0e0, #afc4d3);
+  color: rgb(87, 83, 83);
+
+  h1 {
+    background: linear-gradient(45deg, #d3dce2, transparent);
+  }
+
+  h2 {
+    background: linear-gradient(45deg, #d3dce2, transparent);
+  }
+
+  h3 {
+    background: linear-gradient(45deg, #d3dce2, transparent);
+  }
+
+  footer {
+    background-color: whitesmoke;
+  }
+
+  button {
+    padding-block: 2%;
+    padding-inline: 4%;
+    background-image: linear-gradient(#afc4d3, #e4e0e0, #afc4d3);
+
+    color: rgb(87, 83, 83);
+    font-weight: bolder;
+  }
+}
+
+#welcomespace {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: radial-gradient(transparent, black);
+  inset: 0;
+  z-index: 2;
+}
+
+#messagebox {
+  h1 {
+    background-image: linear-gradient(#afc4d3, #e4e0e0, #afc4d3);
+    color: rgb(87, 83, 83);
+  }
+  padding: 4%;
+  background-image: linear-gradient(
+    45deg,
+    transparent,
+    rgba(0, 0, 0, 0.329),
+    transparent
+  );
+  border: rgb(0, 38, 255);
+  border-width: inherit;
+  border-style: dotted;
+  fill: white;
+}
+
+#msg {
+  display: flex;
+  justify-content: space-between;
+}
+
+#nametext {
+  width: 100%;
+}
+
+button {
+  padding-block: 2%;
+  padding-inline: 4%;
+  background-image: linear-gradient(#00bcd4, #000000, #00bcd4);
+  color: white;
+  font-weight: bold;
+}
+
+#factsspace {
+  display: flex;
+}
+
+#randomfact {
+  padding-left: 2%;
+}
+
 .mainbody {
   /* background-image: repeating-linear-gradient(
     120deg,
@@ -83,6 +166,15 @@ h3 {
 #homeplacement {
   width: 2em;
   height: 2em;
+}
+
+.icons {
+  width: 2em;
+  height: 2em;
+}
+
+#lightbtn {
+  float: right;
 }
 
 #information {
@@ -161,6 +253,10 @@ a:hover {
 
 #pipelinesection {
   padding-top: 0%;
+}
+
+.hide {
+  display: none !important;
 }
 
 @media (width < 960px) {
