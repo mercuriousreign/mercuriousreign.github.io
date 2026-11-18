@@ -2,6 +2,7 @@ const game_win = document.getElementById('game');
 const player = document.getElementById('player');
 const sprite_img = document.getElementById('player_sprite');
 player.style.position = 'absolute';
+const player2 = document.getElementById('player2');
 
 let x = 0;
 let y = 0;
@@ -47,6 +48,12 @@ function updated() {
 }
 
 updated();
+
+document.addEventListener('mousemove', (event) => {
+  player2.style.left = event.clientX;
+  player2.style.top = event.clientY;
+});
+
 // Challenge Requirements
 // 1. Interactive Feature Design and implement at least one new interactive feature for your existing
 // website. This could include a dynamic list, interactive gallery, quiz, registration
