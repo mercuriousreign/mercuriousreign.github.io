@@ -1,58 +1,83 @@
-const game_win = document.getElementById('game');
-const player = document.getElementById('player');
-const sprite_img = document.getElementById('player_sprite');
-player.style.position = 'absolute';
-const player2 = document.getElementById('player2');
+const game_win = document.getElementById('game')
+const player = document.getElementById('player')
+const sprite_img = document.getElementById('player_sprite')
+player.style.position = 'absolute'
+const player2 = document.getElementById('player2')
+const player3 = document.getElementById('player3')
+const scoring = document.getElementById('scoring')
 
-let x = 0;
-let y = 0;
-let time = 0;
-const maxX = game_win.clientWidth - player.offsetWidth;
-const maxY = game_win.clientHeight - player.offsetHeight;
+let x = 0
+let y = 0
+let time = 0
+const maxX = game_win.clientWidth - player.offsetWidth
+const maxY = game_win.clientHeight - player.offsetHeight
+
+let score = 0
 
 //Keyboard events
 document.addEventListener('keydown', (event) => {
   if (event.key === 'ArrowUp') {
-    y -= 10;
+    y -= 10
   }
   if (event.key === 'ArrowDown') {
-    y += 10;
+    y += 10
   }
   if (event.key === 'ArrowLeft') {
-    x -= 10;
-    player.style.transform = 'scaleX(1)';
+    x -= 10
+    player.style.transform = 'scaleX(1)'
   }
   if (event.key === 'ArrowRight') {
-    x += 10;
-    player.style.transform = 'scaleX(-1)';
+    x += 10
+    player.style.transform = 'scaleX(-1)'
   }
 
-  x = Math.max(0, Math.min(maxX, x));
-  y = y;
-  sprite_img.src = 'img/sprite-walk.gif';
-  player.style.left = x + 'px';
-  player.style.top = y + 'px';
-});
+  x = Math.max(0, Math.min(maxX, x))
+  y = y
+  sprite_img.src = 'img/sprite-walk.gif'
+  player.style.left = x + 'px'
+  player.style.top = y + 'px'
+})
 
 document.addEventListener('keyup', (event) => {
-  sprite_img.src = 'img/sprite-stand.gif';
-});
-
-//Mouse events???
+  sprite_img.src = 'img/sprite-stand.gif'
+})
 
 //Drag and Drop?
 
 function updated() {
-  time += 1;
-  console.log(time);
+  time += 1
+  console.log(time)
 }
 
-updated();
-
+updated()
+//Mouse events???
 document.addEventListener('mousemove', (event) => {
-  player2.style.left = event.clientX;
-  player2.style.top = event.clientY;
-});
+  player2.style.left = event.clientX
+  player2.style.top = event.clientY
+})
+//drag and drop
+player3.addEventListener('mousedown', (event) => {
+  console.log('drag is happening')
+  player3.style.left = event.clientX
+  player3.style.top = event.clientY
+})
+
+// player3.addEventListener('mouseover', (event) => {
+//   console.log('mouse over is happening');
+//   player3.style.left = event.clientX;
+//   player3.style.top = event.clientY;
+// });
+
+// document.addEventListener('visibilitychange', (event) => {
+//   console.log('page is showing');
+//   player3.style.left += 10;
+// });
+
+// const mobs = setInterval(() => {
+//   console.log('interval is showing');
+//   time += 1;
+//   player3.style.left = time + 'px';
+// });
 
 // Challenge Requirements
 // 1. Interactive Feature Design and implement at least one new interactive feature for your existing
