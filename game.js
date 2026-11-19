@@ -5,17 +5,23 @@ player.style.position = 'absolute'
 const player2 = document.getElementById('player2')
 const player3 = document.getElementById('player3')
 const scoring = document.getElementById('scoring')
+const HP = document.getElementById('HP')
 
-let x = 0
-let y = 0
 let time = 0
 const maxX = game_win.clientWidth - player.offsetWidth
 const maxY = game_win.clientHeight - player.offsetHeight
-
+let x = game_win.clientWidth / 2
+let y = game_win.clientHeight / 2
 let score = 0
+let moving = false
 
 //Keyboard events
 document.addEventListener('keydown', (event) => {
+  if (!moving) {
+    sprite_img.src = 'img/sprite-walk.gif'
+    moving = true
+  }
+
   if (event.key === 'ArrowUp') {
     y -= 10
   }
@@ -33,23 +39,16 @@ document.addEventListener('keydown', (event) => {
 
   x = Math.max(0, Math.min(maxX, x))
   y = y
-  sprite_img.src = 'img/sprite-walk.gif'
+
   player.style.left = x + 'px'
   player.style.top = y + 'px'
 })
 
 document.addEventListener('keyup', (event) => {
   sprite_img.src = 'img/sprite-stand.gif'
+  moving = false
 })
 
-//Drag and Drop?
-
-function updated() {
-  time += 1
-  console.log(time)
-}
-
-updated()
 //Mouse events???
 document.addEventListener('mousemove', (event) => {
   player2.style.left = event.clientX
@@ -62,11 +61,13 @@ player3.addEventListener('mousedown', (event) => {
   player3.style.top = event.clientY
 })
 
-// player3.addEventListener('mouseover', (event) => {
-//   console.log('mouse over is happening');
-//   player3.style.left = event.clientX;
-//   player3.style.top = event.clientY;
-// });
+player3.addEventListener('mouseover', (event) => {
+  console.log('mouse over is happening')
+  // score += 1
+  // scoring.textContent = score
+  // player3.style.left = event.clientX;
+  // player3.style.top = event.clientY;
+})
 
 // document.addEventListener('visibilitychange', (event) => {
 //   console.log('page is showing');
@@ -78,6 +79,77 @@ player3.addEventListener('mousedown', (event) => {
 //   time += 1;
 //   player3.style.left = time + 'px';
 // });
+
+const mobbat_summon = setInterval(() => {
+  let mob1 = document.createElement('img')
+  mob1.style.position = 'absolute'
+  mob1.src = 'img/Stirge-fly.gif'
+  // mob1.style.backgroundColor = 'red'
+  // mob1.style.width = '72px'
+  // mob1.style.height = '72px'
+  mob1.classList.add('mobs')
+  mob1.style.top = Math.floor(Math.random() * game_win.clientHeight)
+  game_win.appendChild(mob1)
+
+  mob1.addEventListener('mouseover', () => {
+    // mob1.remove(self)
+    console.log('mouse over mob happening')
+    score += 1
+    scoring.textContent = score
+    game_win.removeChild(mob1)
+  })
+
+  setTimeout(() => {
+    // game_win.replaceChildren(mob1)
+    //game_win.replaceChildren(mob1)
+    game_win.removeChild(mob1)
+  }, 3000)
+}, 2000)
+
+const mobeye_summon = setInterval(() => {
+  let mob1 = document.createElement('img')
+  mob1.style.position = 'absolute'
+  mob1.src = 'img/Evil_eye-move.gif'
+  // mob1.style.backgroundColor = 'red'
+  // mob1.style.width = '72px'
+  // mob1.style.height = '72px'
+  mob1.classList.add('mobs')
+  mob1.style.top = Math.floor(Math.random() * game_win.clientHeight)
+  game_win.appendChild(mob1)
+
+  mob1.addEventListener('mouseover', () => {
+    // mob1.remove(self)
+    console.log('mouse over mob happening')
+    score += 1
+    scoring.textContent = score
+    game_win.removeChild(mob1)
+  })
+
+  setTimeout(() => {
+    // game_win.replaceChildren(mob1)
+    //game_win.replaceChildren(mob1)
+    game_win.removeChild(mob1)
+  }, 3000)
+}, 2000)
+
+let mob_x = 0
+const mobs_move = setInterval(() => {
+  m = document.querySelectorAll('.mobs')
+  mob_x += 1
+  m.forEach((x) => {
+    x.style.right = mob_x + 'px'
+  })
+}, 16)
+
+// let m = document.querySelectorAll('mobs')
+// m.forEach((x) => {
+//   mob_x = 0
+//   setInterval(() => {
+//     mob_x += 1
+//     x.style.left = mob_x + 'px'
+//     console.log('its happening')
+//   })
+// })
 
 // Challenge Requirements
 // 1. Interactive Feature Design and implement at least one new interactive feature for your existing
