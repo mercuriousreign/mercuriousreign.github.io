@@ -1,0 +1,45 @@
+<html>
+  <head>
+    <title>Chronicles of MercuryRaven</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="game.js" defer></script>
+  </head>
+
+  <body id="game">
+    <div id="scoreplace">
+      <h3>Scoring <b id="scoring"></b></h3>
+      <h3>
+        HP
+        <b
+          id="HP"
+          style="display: flex; width: 100%; height: 5%; background-color: red"
+        ></b>
+      </h3>
+    </div>
+    <div>
+      <div
+        id="player2"
+        style="
+          position: absolute;
+          width: 72px;
+          height: 72px;
+          transform: scaleX(-1);
+        "
+      >
+        <img src="img/Tweeter-move.gif" alt="Thumbnail of MercuryRaven" />
+      </div>
+      <div id="player" style="position: absolute; transform: scaleX(-1)">
+        <img
+          id="player_sprite"
+          src="img/sprite-stand.gif"
+          alt="Thumbnail of MercuryRaven"
+        />
+      </div>
+    </div>
+  </body>
+  <div id="welcomespace" >
+      <div id="messagebox">
+        <h1>Avoid all the evil eye but catch all the evil bats! Press ENter to start!</h1> 
+        <h1 id="endmsg"></h1>
+      </div>
+</html>
