@@ -18,6 +18,10 @@ let score = 0
 let moving = false
 let HealthPoints = 100
 HP.textContent = HealthPoints
+HP.style.width = (HealthPoints / 100) * 100 + '%'
+
+player.style.left = x + 'px'
+player.style.top = y + 'px'
 
 //Keyboard events
 document.addEventListener('keydown', (event) => {
@@ -85,6 +89,7 @@ const mobbat_summon = setInterval(() => {
     console.log('mouse over mob happening')
     HealthPoints -= 10
     HP.textContent = HealthPoints
+    HP.style.width = (HealthPoints / 100) * 100 + '%'
     game_win.removeChild(mob1)
   })
 
@@ -121,6 +126,7 @@ const mobeye_summon = setInterval(() => {
     console.log('mouse over mob happening')
     HealthPoints -= 10
     HP.textContent = HealthPoints
+    HP.style.width = (HealthPoints / 100) * 100 + '%'
     game_win.removeChild(mob1)
   })
 
