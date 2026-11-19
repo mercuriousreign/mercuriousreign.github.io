@@ -8,13 +8,14 @@ const scoring = document.getElementById('scoring')
 const HP = document.getElementById('HP')
 
 let time = 0
-game_win.style.width = '1000px'
-game_win.style.height = '1000px'
+// game_win.style.width = '1000px'
+// game_win.style.height = '1000px'
 const maxX = game_win.clientWidth - player.offsetWidth
 const maxY = game_win.clientHeight - player.offsetHeight
 let x = 0
 let y = 0
 let score = 0
+let speed = 20
 let moving = false
 let HealthPoints = 100
 HP.textContent = HealthPoints
@@ -28,25 +29,23 @@ document.addEventListener('keydown', (event) => {
   if (!moving) {
     sprite_img.src = 'img/sprite-walk.gif'
     moving = true
-  }
-
-  if (event.key === 'ArrowUp') {
-    y -= 10
-  }
-  if (event.key === 'ArrowDown') {
-    y += 10
-  }
-  if (event.key === 'ArrowLeft') {
-    x -= 10
+  } else if (event.key === 'ArrowUp') {
+    y -= speed
+  } else if (event.key === 'ArrowDown') {
+    y += speed
+  } else if (event.key === 'ArrowLeft') {
+    x -= speed
     player.style.transform = 'scaleX(1)'
-  }
-  if (event.key === 'ArrowRight') {
-    x += 10
+  } else if (event.key === 'ArrowRight') {
+    x += speed
     player.style.transform = 'scaleX(-1)'
+  } else {
+    return
   }
 
+  event.preventDefault()
   x = Math.max(0, Math.min(maxX, x))
-  y = y
+  y = Math.max(0, Math.min(maxY, y))
 
   player.style.left = x + 'px'
   player.style.top = y + 'px'
@@ -138,6 +137,12 @@ const mobeye_summon = setInterval(() => {
   // }, 5000)
 }, 3000)
 
+let clearing = setInterval(() => {
+  let allmobs = document.querySelectorAll('.mobs')
+  allmobs.forEach((x) => {
+    x.remove()
+  })
+}, 10000)
 // let mob_x = 0
 // let mobs_move = setInterval(() => {
 //   m = document.querySelectorAll('.mobs')
