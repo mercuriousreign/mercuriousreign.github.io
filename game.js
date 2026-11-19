@@ -8,10 +8,12 @@ const scoring = document.getElementById('scoring')
 const HP = document.getElementById('HP')
 
 let time = 0
+game_win.style.width = '1000px'
+game_win.style.height = '2000px'
 const maxX = game_win.clientWidth - player.offsetWidth
 const maxY = game_win.clientHeight - player.offsetHeight
-let x = game_win.clientWidth / 2
-let y = game_win.clientHeight / 2
+let x = 0
+let y = 0
 let score = 0
 let moving = false
 
@@ -63,22 +65,7 @@ player3.addEventListener('mousedown', (event) => {
 
 player3.addEventListener('mouseover', (event) => {
   console.log('mouse over is happening')
-  // score += 1
-  // scoring.textContent = score
-  // player3.style.left = event.clientX;
-  // player3.style.top = event.clientY;
 })
-
-// document.addEventListener('visibilitychange', (event) => {
-//   console.log('page is showing');
-//   player3.style.left += 10;
-// });
-
-// const mobs = setInterval(() => {
-//   console.log('interval is showing');
-//   time += 1;
-//   player3.style.left = time + 'px';
-// });
 
 const mobbat_summon = setInterval(() => {
   let mob1 = document.createElement('img')
@@ -99,11 +86,17 @@ const mobbat_summon = setInterval(() => {
     game_win.removeChild(mob1)
   })
 
+  pos_y = 0
+  let move_y = setInterval(() => {
+    pos_y += 1
+    mob1.style.right = pos_y + 'px'
+  }, 16)
   setTimeout(() => {
+    pos_y = 0
     // game_win.replaceChildren(mob1)
     //game_win.replaceChildren(mob1)
     game_win.removeChild(mob1)
-  }, 3000)
+  }, 5000)
 }, 2000)
 
 const mobeye_summon = setInterval(() => {
@@ -116,7 +109,11 @@ const mobeye_summon = setInterval(() => {
   mob1.classList.add('mobs')
   mob1.style.top = Math.floor(Math.random() * game_win.clientHeight)
   game_win.appendChild(mob1)
-
+  pos_y = 0
+  let move_y = setInterval(() => {
+    pos_y += 1
+    mob1.style.right = pos_y + 'px'
+  }, 16)
   mob1.addEventListener('mouseover', () => {
     // mob1.remove(self)
     console.log('mouse over mob happening')
@@ -128,18 +125,19 @@ const mobeye_summon = setInterval(() => {
   setTimeout(() => {
     // game_win.replaceChildren(mob1)
     //game_win.replaceChildren(mob1)
+    pos_y = 0
     game_win.removeChild(mob1)
-  }, 3000)
+  }, 5000)
 }, 2000)
 
-let mob_x = 0
-const mobs_move = setInterval(() => {
-  m = document.querySelectorAll('.mobs')
-  mob_x += 1
-  m.forEach((x) => {
-    x.style.right = mob_x + 'px'
-  })
-}, 16)
+// let mob_x = 0
+// let mobs_move = setInterval(() => {
+//   m = document.querySelectorAll('.mobs')
+//   mob_x += 1
+//   m.forEach((x) => {
+//     x.style.right = mob_x + 'px'
+//   })
+// }, 16)
 
 // let m = document.querySelectorAll('mobs')
 // m.forEach((x) => {
