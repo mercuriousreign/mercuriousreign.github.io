@@ -3,19 +3,21 @@ const player = document.getElementById('player')
 const sprite_img = document.getElementById('player_sprite')
 player.style.position = 'absolute'
 const player2 = document.getElementById('player2')
-const player3 = document.getElementById('player3')
+
 const scoring = document.getElementById('scoring')
 const HP = document.getElementById('HP')
 
 let time = 0
 game_win.style.width = '1000px'
-game_win.style.height = '2000px'
+game_win.style.height = '1000px'
 const maxX = game_win.clientWidth - player.offsetWidth
 const maxY = game_win.clientHeight - player.offsetHeight
 let x = 0
 let y = 0
 let score = 0
 let moving = false
+let HealthPoints = 100
+HP.textContent = HealthPoints
 
 //Keyboard events
 document.addEventListener('keydown', (event) => {
@@ -57,15 +59,15 @@ document.addEventListener('mousemove', (event) => {
   player2.style.top = event.clientY
 })
 //drag and drop
-player3.addEventListener('mousedown', (event) => {
-  console.log('drag is happening')
-  player3.style.left = event.clientX
-  player3.style.top = event.clientY
-})
+// player3.addEventListener('mousedown', (event) => {
+//   console.log('drag is happening')
+//   player3.style.left = event.clientX
+//   player3.style.top = event.clientY
+// })
 
-player3.addEventListener('mouseover', (event) => {
-  console.log('mouse over is happening')
-})
+// player3.addEventListener('mouseover', (event) => {
+//   console.log('mouse over is happening')
+// })
 
 const mobbat_summon = setInterval(() => {
   let mob1 = document.createElement('img')
@@ -81,8 +83,8 @@ const mobbat_summon = setInterval(() => {
   mob1.addEventListener('mouseover', () => {
     // mob1.remove(self)
     console.log('mouse over mob happening')
-    score += 1
-    scoring.textContent = score
+    HealthPoints -= 10
+    HP.textContent = HealthPoints
     game_win.removeChild(mob1)
   })
 
@@ -91,12 +93,12 @@ const mobbat_summon = setInterval(() => {
     pos_y += 1
     mob1.style.right = pos_y + 'px'
   }, 16)
-  setTimeout(() => {
-    pos_y = 0
-    // game_win.replaceChildren(mob1)
-    //game_win.replaceChildren(mob1)
-    game_win.removeChild(mob1)
-  }, 5000)
+  // setTimeout(() => {
+  //   // game_win.replaceChildren(mob1)
+  //   //game_win.replaceChildren(mob1)
+  //   game_win.removeChild(mob1)
+  //   clearTimeout(move_y)
+  // }, 5000)
 }, 2000)
 
 const mobeye_summon = setInterval(() => {
@@ -117,18 +119,18 @@ const mobeye_summon = setInterval(() => {
   mob1.addEventListener('mouseover', () => {
     // mob1.remove(self)
     console.log('mouse over mob happening')
-    score += 1
-    scoring.textContent = score
+    HealthPoints -= 10
+    HP.textContent = HealthPoints
     game_win.removeChild(mob1)
   })
 
-  setTimeout(() => {
-    // game_win.replaceChildren(mob1)
-    //game_win.replaceChildren(mob1)
-    pos_y = 0
-    game_win.removeChild(mob1)
-  }, 5000)
-}, 2000)
+  // setTimeout(() => {
+  //   // game_win.replaceChildren(mob1)
+  //   //game_win.replaceChildren(mob1)
+
+  //   game_win.removeChild(mob1)
+  // }, 5000)
+}, 3000)
 
 // let mob_x = 0
 // let mobs_move = setInterval(() => {
