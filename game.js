@@ -49,6 +49,18 @@ document.addEventListener('keydown', (event) => {
 
   player.style.left = x + 'px'
   player.style.top = y + 'px'
+
+  let all_mobs = document.querySelectorAll('.mobs')
+  all_mobs.forEach((mob) => {
+    const mobX = parseInt(mob.style.right)
+    const mobY = parseInt(mob.style.top)
+
+    if (Math.abs(mobX - x) < 10 && Math.abs(mobY - y) < 10) {
+      mob.remove()
+      score += 1
+      scoring.textContent = score
+    }
+  })
 })
 
 document.addEventListener('keyup', (event) => {
@@ -80,7 +92,7 @@ const mobbat_summon = setInterval(() => {
   // mob1.style.width = '72px'
   // mob1.style.height = '72px'
   mob1.classList.add('mobs')
-  mob1.style.top = Math.floor(Math.random() * game_win.clientHeight)
+  mob1.style.top = Math.floor(Math.random() * game_win.clientHeight) + 'px'
   game_win.appendChild(mob1)
 
   mob1.addEventListener('mouseover', () => {
@@ -92,10 +104,15 @@ const mobbat_summon = setInterval(() => {
     game_win.removeChild(mob1)
   })
 
-  pos_y = 0
+  let pos_y = 0
+  let mob_speed = Math.floor(Math.random() * 3)
   let move_y = setInterval(() => {
-    pos_y += 1
+    pos_y += mob_speed
     mob1.style.right = pos_y + 'px'
+    if (pos_y > game_win.clientWidth) {
+      mob1.remove()
+      clearTimeout(move_y)
+    }
   }, 16)
   // setTimeout(() => {
   //   // game_win.replaceChildren(mob1)
@@ -113,12 +130,17 @@ const mobeye_summon = setInterval(() => {
   // mob1.style.width = '72px'
   // mob1.style.height = '72px'
   mob1.classList.add('mobs')
-  mob1.style.top = Math.floor(Math.random() * game_win.clientHeight)
+  mob1.style.top = Math.floor(Math.random() * game_win.clientHeight) + 'px'
   game_win.appendChild(mob1)
-  pos_y = 0
+  let pos_y = 0
+  let mob_speed = Math.floor(Math.random() * 3)
   let move_y = setInterval(() => {
-    pos_y += 1
+    pos_y += mob_speed
     mob1.style.right = pos_y + 'px'
+    if (pos_y > game_win.clientWidth) {
+      mob1.remove()
+      clearTimeout(move_y)
+    }
   }, 16)
   mob1.addEventListener('mouseover', () => {
     // mob1.remove(self)
@@ -137,12 +159,6 @@ const mobeye_summon = setInterval(() => {
   // }, 5000)
 }, 3000)
 
-let clearing = setInterval(() => {
-  let allmobs = document.querySelectorAll('.mobs')
-  allmobs.forEach((x) => {
-    x.remove()
-  })
-}, 10000)
 // let mob_x = 0
 // let mobs_move = setInterval(() => {
 //   m = document.querySelectorAll('.mobs')
