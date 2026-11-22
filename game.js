@@ -115,7 +115,7 @@ if ((game_state = 'game')) {
     })
 
     let pos_y = 0
-    let mob_speed = Math.floor(Math.random() * 3)
+    let mob_speed = Math.floor(Math.random() * 3) + 1
     let move_y = setInterval(() => {
       pos_y += mob_speed
       mob1.style.right = pos_y + 'px'
@@ -156,7 +156,7 @@ if ((game_state = 'game')) {
     })
 
     let pos_y = 0
-    let mob_speed = Math.floor(Math.random() * 3)
+    let mob_speed = Math.floor(Math.random() * 3) + 1
     let move_y = setInterval(() => {
       pos_y += mob_speed
       mob1.style.right = pos_y + 'px'
@@ -182,7 +182,7 @@ if ((game_state = 'game')) {
     mob1.style.top = Math.floor(Math.random() * game_win.clientHeight) + 'px'
     game_win.appendChild(mob1)
     let pos_y = 0
-    let mob_speed = Math.floor(Math.random() * 3)
+    let mob_speed = Math.floor(Math.random() * 3) + 1
     let move_y = setInterval(() => {
       pos_y += mob_speed
       mob1.style.right = pos_y + 'px'
