@@ -8,6 +8,7 @@ const scoring = document.getElementById('scoring')
 const HP = document.getElementById('HP')
 const gameover = document.getElementById('gameOvermsg')
 const game_area = document.getElementById('gamespace')
+let mobs = []
 let game_state = 'tutorial'
 
 let time = 0
@@ -28,6 +29,7 @@ player.style.left = x + 'px'
 player.style.top = y + 'px'
 
 if ((game_state = 'tutorial')) {
+  getMobs()
   document.addEventListener('keydown', (event) => {
     let welcomespace = document.getElementById('welcomespace')
 
@@ -208,29 +210,32 @@ if ((game_state = 'game')) {
   }, 3000)
 }
 
-window.addEventListener('resize', () => {
-  scoring.textContent = 'Did you resize the window? 🤔'
-})
-
 //
 //2400374
 //let randurl = ` ${https://maplestory.io/api/GMS/270/mob/{rand}/render/move}`
-async function getMob(obj) {
-  let rand = 0
+
+async function getMobs() {
+  let rand = Math.floor(Math.random() * 9000) + 100
   try {
     fetch(`https://maplestory.io/api/GMS/270/mob?startPosition=20&count=10`)
       .then((response) => response.json())
       .then((json) => {
-        let indexing = Math.floor(Math.random() * json.count)
-        rand = json[indexing].id
-        console.log('jsonsare', json)
-        console.log(indexing, rand)
+        console.log('thejosns', json)
+        mobs = json
+        console.log('themobs')
       })
+  } catch (error) {
+    console.log('recivederror at getmobs', error)
+  }
+}
 
+async function getMob(obj) {
+  let rand = mobs[Math.floor(Math.random() * mobs.length)]
+  try {
     //let rand = Math.floor(Math.random() * 1110100) + 100000
     //let rand = Math.floor(Math.random() * 1110100) + 100000
 
-    fetch(`https://maplestory.io/api/GMS/270/mob/${rand}/render/move`)
+    fetch(`https://maplestory.io/api/GMS/270/mob/${rand.id}/render/move`)
       .then((response) => response.blob())
       .then((blob) => {
         obj.src = URL.createObjectURL(blob)
@@ -240,10 +245,6 @@ async function getMob(obj) {
   }
 }
 
-function random_gibber() {
-  fetch('https://jsonplaceholder.typicode.com/posts/1')
-    .then((response) => response.json())
-    .then((json) => {
-      gibberplace.textContent = json.body
-    })
-}
+window.addEventListener('resize', () => {
+  scoring.textContent = 'Did you resize the window? 🤔'
+})
