@@ -130,6 +130,47 @@ if ((game_state = 'game')) {
     // }, 5000)
   }, 2000)
 
+  const mobrand_summon = setInterval(() => {
+    let mob1 = document.createElement('img')
+    mob1.style.position = 'absolute'
+    getMob(mob1)
+    //mob1.src = 'img/Stirge-fly.gif'
+    // mob1.style.backgroundColor = 'red'
+    // mob1.style.width = '72px'
+    // mob1.style.height = '72px'
+    mob1.classList.add('mobs')
+    mob1.style.top = Math.floor(Math.random() * game_win.clientHeight) + 'px'
+    game_win.appendChild(mob1)
+
+    mob1.addEventListener('mouseover', () => {
+      // mob1.remove(self)
+      console.log('mouse over mob happening')
+      // HealthPoints -= 10
+      // HP.textContent = HealthPoints
+      // HP.style.width = (HealthPoints / 100) * 100 + '%'
+      score += 1
+      scoring.textContent = score
+      game_win.removeChild(mob1)
+    })
+
+    let pos_y = 0
+    let mob_speed = Math.floor(Math.random() * 3)
+    let move_y = setInterval(() => {
+      pos_y += mob_speed
+      mob1.style.right = pos_y + 'px'
+      if (pos_y > game_win.clientWidth) {
+        mob1.remove()
+        clearTimeout(move_y)
+      }
+    }, 16)
+    // setTimeout(() => {
+    //   // game_win.replaceChildren(mob1)
+    //   //game_win.replaceChildren(mob1)
+    //   game_win.removeChild(mob1)
+    //   clearTimeout(move_y)
+    // }, 5000)
+  }, 2000)
+
   const mobeye_summon = setInterval(() => {
     let mob1 = document.createElement('img')
     mob1.style.position = 'absolute'
@@ -170,3 +211,39 @@ if ((game_state = 'game')) {
 window.addEventListener('resize', () => {
   scoring.textContent = 'Did you resize the window? 🤔'
 })
+
+//
+//2400374
+//let randurl = ` ${https://maplestory.io/api/GMS/270/mob/{rand}/render/move}`
+async function getMob(obj) {
+  let rand = 0
+  try {
+    fetch(`https://maplestory.io/api/GMS/270/mob?startPosition=20&count=10`)
+      .then((response) => response.json())
+      .then((json) => {
+        let indexing = Math.floor(Math.random() * json.count)
+        rand = json[indexing].id
+        console.log('jsonsare', json)
+        console.log(indexing, rand)
+      })
+
+    //let rand = Math.floor(Math.random() * 1110100) + 100000
+    //let rand = Math.floor(Math.random() * 1110100) + 100000
+
+    fetch(`https://maplestory.io/api/GMS/270/mob/${rand}/render/move`)
+      .then((response) => response.blob())
+      .then((blob) => {
+        obj.src = URL.createObjectURL(blob)
+      })
+  } catch (error) {
+    console.log('Error', error)
+  }
+}
+
+function random_gibber() {
+  fetch('https://jsonplaceholder.typicode.com/posts/1')
+    .then((response) => response.json())
+    .then((json) => {
+      gibberplace.textContent = json.body
+    })
+}
