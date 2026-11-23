@@ -134,6 +134,7 @@ if ((game_state = 'game')) {
 
   const mobrand_summon = setInterval(() => {
     let mob1 = document.createElement('img')
+
     mob1.style.position = 'absolute'
     getMob(mob1)
     //mob1.src = 'img/Stirge-fly.gif'
@@ -215,15 +216,26 @@ if ((game_state = 'game')) {
 //let randurl = ` ${https://maplestory.io/api/GMS/270/mob/{rand}/render/move}`
 
 async function getMobs() {
-  let rand = Math.floor(Math.random() * 9000) + 100
+  let rand = Math.floor(Math.random() * 300) + 100
+  console.log('rand number is ', rand)
   try {
-    fetch(`https://maplestory.io/api/GMS/270/mob?startPosition=20&count=10`)
-      .then((response) => response.json())
-      .then((json) => {
-        console.log('thejosns', json)
-        mobs = json
-        console.log('themobs')
-      })
+    const response = await fetch(
+      `https://maplestory.io/api/GMS/270/mob?startPosition=${rand}&count=10`,
+    )
+
+    if (!response.ok) {
+      throw new Error(`Error:${response.status}`)
+    }
+
+    mobs = await response.json()
+
+    // fetch(`https://maplestory.io/api/GMS/270/mob?startPosition=20&count=10`)
+    //   .then((response) => response.json())
+    //   .then((json) => {
+    //     console.log('thejosns', json)
+    //     mobs = json
+    //     console.log('themobs')
+    //   })
   } catch (error) {
     console.log('recivederror at getmobs', error)
   }
@@ -235,11 +247,21 @@ async function getMob(obj) {
     //let rand = Math.floor(Math.random() * 1110100) + 100000
     //let rand = Math.floor(Math.random() * 1110100) + 100000
 
-    fetch(`https://maplestory.io/api/GMS/270/mob/${rand.id}/render/move`)
-      .then((response) => response.blob())
-      .then((blob) => {
-        obj.src = URL.createObjectURL(blob)
-      })
+    const response = await fetch(
+      `https://maplestory.io/api/GMS/270/mob/${rand.id}/render/move`,
+    )
+
+    const blob = await response.blob()
+    obj.src = URL.createObjectURL(blob)
+    const name = document.createElement('h3')
+    name.textContent = rand.name + ' level ' + rand.level
+    obj.appendChild(name)
+
+    // fetch(`https://maplestory.io/api/GMS/270/mob/${rand.id}/render/move`)
+    //   .then((response) => response.blob())
+    //   .then((blob) => {
+    //     obj.src = URL.createObjectURL(blob)
+    //   })
   } catch (error) {
     console.log('Error', error)
   }
