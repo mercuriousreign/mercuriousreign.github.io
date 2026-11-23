@@ -133,10 +133,10 @@ if ((game_state = 'game')) {
   }, 2000)
 
   const mobrand_summon = setInterval(() => {
-    let mob1 = document.createElement('img')
-
+    let mob1 = document.createElement('div')
     mob1.style.position = 'absolute'
-    getMob(mob1)
+    let mobimg = document.createElement('img')
+    getMob(mob1, mobimg)
     //mob1.src = 'img/Stirge-fly.gif'
     // mob1.style.backgroundColor = 'red'
     // mob1.style.width = '72px'
@@ -241,7 +241,7 @@ async function getMobs() {
   }
 }
 
-async function getMob(obj) {
+async function getMob(wrapper, obj) {
   let rand = mobs[Math.floor(Math.random() * mobs.length)]
   try {
     //let rand = Math.floor(Math.random() * 1110100) + 100000
@@ -253,9 +253,10 @@ async function getMob(obj) {
 
     const blob = await response.blob()
     obj.src = URL.createObjectURL(blob)
-    const name = document.createElement('h3')
-    name.textContent = rand.name + ' level ' + rand.level
-    obj.appendChild(name)
+    const name = document.createElement('p')
+    name.textContent = rand.name + ' lvl' + rand.level
+    wrapper.appendChild(obj)
+    wrapper.appendChild(name)
 
     // fetch(`https://maplestory.io/api/GMS/270/mob/${rand.id}/render/move`)
     //   .then((response) => response.blob())
