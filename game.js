@@ -163,8 +163,8 @@ function start_game() {
 
     //Mouse events???
     document.addEventListener('mousemove', (event) => {
-      player2.style.left = event.clientX
-      player2.style.top = event.clientY
+      player2.style.left = event.clientX + 'px'
+      player2.style.top = event.clientY + 'px'
     })
   }
 }

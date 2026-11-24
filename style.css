@@ -2,6 +2,9 @@ body {
   padding-inline: 5%;
   /* justify-content: center; */
   background-image: linear-gradient(#00bcd4, #000000, #00bcd4);
+  min-height: 100vh;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 
   /* radial-gradient(red, blue, red); */
   color: white;
