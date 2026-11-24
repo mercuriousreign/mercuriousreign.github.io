@@ -1,0 +1,72 @@
+[
+  {
+    "id": 100200,
+    "name": "Starfish",
+    "mobType": "1N",
+    "level": 1,
+    "isBoss": false
+  },
+  {
+    "id": 1110100,
+    "name": "Green Mushroom",
+    "mobType": "3N",
+    "level": 10,
+    "isBoss": false
+  },
+  {
+    "id": 1110101,
+    "name": "Dark Stump",
+    "mobType": "1N",
+    "level": 20,
+    "isBoss": false
+  },
+  {
+    "id": 1110130,
+    "name": "Dejected Green Mushroom",
+    "mobType": "1N",
+    "level": 11,
+    "isBoss": false
+  },
+  {
+    "id": 1120100,
+    "name": "Octopus",
+    "mobType": "1N",
+    "level": 10,
+    "isBoss": false
+  },
+  {
+    "id": 1130100,
+    "name": "Axe Stump",
+    "mobType": "5H",
+    "level": 21,
+    "isBoss": false
+  },
+  {
+    "id": 1140100,
+    "name": "Ghost Stump",
+    "mobType": "5H",
+    "level": 23,
+    "isBoss": false
+  },
+  {
+    "id": 1140130,
+    "name": "Smirking Ghost Stump",
+    "mobType": "5H",
+    "level": 24,
+    "isBoss": false
+  },
+  {
+    "id": 1150000,
+    "name": "Patrol Robot",
+    "mobType": "1N",
+    "level": 14,
+    "isBoss": false
+  },
+  {
+    "id": 1150001,
+    "name": "Strange Sign",
+    "mobType": "1N",
+    "level": 16,
+    "isBoss": false
+  }
+]

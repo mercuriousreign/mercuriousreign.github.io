@@ -36,10 +36,20 @@
         />
       </div>
     </div>
+    <div id="console">
+      <p id="consolemsg"></p>
+    </div>
   </body>
-  <div id="welcomespace" >
-      <div id="messagebox">
-        <h1>Avoid all the evil eye but catch all the evil bats! Press ENter to start!</h1> 
-        <h1 id="endmsg"></h1>
-      </div>
+  <div id="welcomespace">
+    <div id="messagebox">
+      <h1>
+        Avoid all the evil monsters but catch all the evil bats! Press Enter to
+        start!
+      </h1>
+      <button onclick="getMobs()">
+        Click for hardmode(Random mobs from API)
+      </button>
+      <button onclick="start_game()">Start Game</button>
+    </div>
+  </div>
 </html>

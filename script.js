@@ -1,15 +1,19 @@
+import data from './mob.json' with { type: 'json' }
 //1. External JavaScript
-let contentbody = document.querySelector('body');
-let lightbtn = document.getElementById('lightbtn');
-let offbtn = document.getElementById('offmode');
-let factplace = document.getElementById('randomfact');
-let welcomespace = document.getElementById('welcomespace');
+let contentbody = document.querySelector('body')
+let lightbtn = document.getElementById('lightbtn')
+let offbtn = document.getElementById('offmode')
+let factplace = document.getElementById('randomfact')
+let gibberplace = document.getElementById(random_gibber)
+let welcomespace = document.getElementById('welcomespace')
+
+let datamob = import('./mob.json')
 
 //2. Light / Dark Mode Toggle
 function light_toggle() {
-  console.log('button registering');
-  contentbody.classList.toggle('lightmode');
-  offbtn.classList.toggle('hide');
+  console.log('button registering')
+  contentbody.classList.toggle('lightmode')
+  offbtn.classList.toggle('hide')
 }
 
 //3. Random Fact Generator
@@ -20,28 +24,65 @@ function random_fact() {
     'Favourite console is GameboyAdvance',
     'Likes the color teal',
     'Does not like wearing socks for in place of using heater',
-  ];
-  let number = Math.floor(Math.random() * facts.length);
-  factplace.textContent = ` ${facts[number]}`;
+  ]
+  let number = Math.floor(Math.random() * facts.length)
+  factplace.textContent = ` ${facts[number]}`
 }
+
+function random_gibber() {
+  fetch('https://jsonplaceholder.typicode.com/posts/1')
+    .then((response) => response.json())
+    .then((json) => {
+      gibberplace.textContent = json.body
+    })
+}
+
+// fetch(`https://maplestory.io/api/GMS/270/mob/startPosition=20`)
+//   .then((response) => response.json())
+//   .then((json) => {
+//     console.log(json)
+//     let objs = json
+//   })
+
+// async function getMob(obj) {
+//   try {
+//     let rand = Math.floor(Math.random() * 1110100) + 100000
+//     //let rand = Math.floor(Math.random() * 1110100) + 100000
+//     //`https://maplestory.io/api/GMS/270/mob/${rand}/render/move`
+
+//     fetch(`https://maplestory.io/api/GMS/270/mob/`)
+//       .then((response) => response.blob())
+//       .then((blob) => {
+//         obj.src = URL.createObjectURL(blob)
+//       })
+//   } catch (error) {
+//     console.log('Error', error)
+//   }
+// }
 
 //4 Personalized Greetings
 
 function greeting() {
-  let nameplace = document.getElementById('nametext');
-  let welcome = document.getElementById('msg');
+  let nameplace = document.getElementById('nametext')
+  let welcome = document.getElementById('msg')
 
-  let greeting = document.getElementById('greeting');
+  let greeting = document.getElementById('greeting')
 
   if (nameplace.value != '') {
-    welcome.classList.toggle('hide');
-    welcomespace.classList.toggle('hide');
+    welcome.classList.toggle('hide')
+    welcomespace.classList.toggle('hide')
+    // greeting.textContent = `Welcome to the website ${nameplace.value}!!`
+    alert(`Welcome to the website ${nameplace.value}`)
+    // fetch('https://jsonplaceholder.typicode.com/posts/1')
+    //   .then((response) => response.json())
+    //   .then((json) => {
+    //     console.log(json)
+    //     greeting.textContent += json.body
 
-    alert(`Welcome to the website ${nameplace.value}`);
-    greeting.textContent = `Welcome to the website ${nameplace.value}!!`;
+    //   })
   } else {
-    alert('Invalid name');
-    nameplace.value = '';
+    alert('Invalid name')
+    nameplace.value = ''
   }
 }
 
