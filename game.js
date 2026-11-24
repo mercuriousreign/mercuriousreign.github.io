@@ -8,6 +8,7 @@ const scoring = document.getElementById('scoring')
 const HP = document.getElementById('HP')
 const gameover = document.getElementById('gameOvermsg')
 const game_area = document.getElementById('gamespace')
+const welcome_space = document.getElementById('welcomespace')
 let mobs = []
 let game_state = 'tutorial'
 
@@ -28,73 +29,17 @@ HP.style.width = (HealthPoints / 100) * 100 + '%'
 player.style.left = x + 'px'
 player.style.top = y + 'px'
 
-if ((game_state = 'tutorial')) {
+if (game_state === 'tutorial') {
   document.addEventListener('keydown', (event) => {
-    let welcomespace = document.getElementById('welcomespace')
-
     if (event.key === 'Enter') {
-      game_state = 'game'
-
-      welcomespace.style.display = 'none'
+      start_game()
     }
   })
 }
 
 function start_game() {
   game_state = 'game'
-  welcomespace.style.display = 'none'
-}
-
-if ((game_state = 'game')) {
-  //Keyboard events
-  document.addEventListener('keydown', (event) => {
-    if (!moving) {
-      sprite_img.src = 'img/sprite-walk.gif'
-      moving = true
-    } else if (event.key === 'ArrowUp') {
-      y -= speed
-    } else if (event.key === 'ArrowDown') {
-      y += speed
-    } else if (event.key === 'ArrowLeft') {
-      x -= speed
-      player.style.transform = 'scaleX(1)'
-    } else if (event.key === 'ArrowRight') {
-      x += speed
-      player.style.transform = 'scaleX(-1)'
-    } else {
-      return
-    }
-
-    event.preventDefault()
-    x = Math.max(0, Math.min(maxX, x))
-    y = Math.max(0, Math.min(maxY, y))
-
-    player.style.left = x + 'px'
-    player.style.top = y + 'px'
-
-    let all_mobs = document.querySelectorAll('.mobs')
-    all_mobs.forEach((mob) => {
-      const mobX = parseInt(mob.style.right)
-      const mobY = parseInt(mob.style.top)
-
-      if (Math.abs(mobX - x) < 10 && Math.abs(mobY - y) < 10) {
-        mob.remove()
-        score += 1
-        scoring.textContent = score
-      }
-    })
-  })
-
-  document.addEventListener('keyup', (event) => {
-    sprite_img.src = 'img/sprite-stand.gif'
-    moving = false
-  })
-
-  //Mouse events???
-  document.addEventListener('mousemove', (event) => {
-    player2.style.left = event.clientX
-    player2.style.top = event.clientY
-  })
+  welcome_space.style.display = 'none'
 
   const mobbat_summon = setInterval(() => {
     let img_insert = document.createElement('img')
@@ -105,19 +50,17 @@ if ((game_state = 'game')) {
     const name = document.createElement('p')
     name.textContent = 'Stirge' + ' lvl' + 20
     mob1.appendChild(name)
-    // mob1.style.backgroundColor = 'red'
-    // mob1.style.width = '72px'
-    // mob1.style.height = '72px'
+    mob1.style.right = '0px'
+    mob1.style.width = 'max-content'
+    mob1.style.textAlign = 'center'
+
     mob1.classList.add('mobs')
     mob1.style.top = Math.floor(Math.random() * game_win.clientHeight) + 'px'
     game_win.appendChild(mob1)
 
     mob1.addEventListener('mouseover', () => {
-      // mob1.remove(self)
       console.log('mouse over mob happening')
-      // HealthPoints -= 10
-      // HP.textContent = HealthPoints
-      // HP.style.width = (HealthPoints / 100) * 100 + '%'
+
       score += 1
       scoring.textContent = score
       game_win.removeChild(mob1)
@@ -133,12 +76,6 @@ if ((game_state = 'game')) {
         clearTimeout(move_y)
       }
     }, 16)
-    // setTimeout(() => {
-    //   // game_win.replaceChildren(mob1)
-    //   //game_win.replaceChildren(mob1)
-    //   game_win.removeChild(mob1)
-    //   clearTimeout(move_y)
-    // }, 5000)
   }, 2000)
 
   const mobeye_summon = setInterval(() => {
@@ -150,6 +87,9 @@ if ((game_state = 'game')) {
     const name = document.createElement('p')
     name.textContent = 'EvilEye' + ' lvl' + 29
     mob1.appendChild(name)
+    mob1.style.right = '0px'
+    mob1.style.width = 'max-content'
+    mob1.style.textAlign = 'center'
 
     mob1.classList.add('mobs')
     mob1.style.top = Math.floor(Math.random() * game_win.clientHeight) + 'px'
@@ -165,25 +105,72 @@ if ((game_state = 'game')) {
       }
     }, 16)
     mob1.addEventListener('mouseover', () => {
-      // mob1.remove(self)
-
       HealthPoints -= 10
       HP.textContent = HealthPoints
       HP.style.width = (HealthPoints / 100) * 100 + '%'
 
       game_win.removeChild(mob1)
       if (HealthPoints <= 0) {
-        game_state = 'game_over'
-        game_win.replaceChildren(gameover)
-        document.getElementById('endmsg').innerText =
-          'Game Over! the final score is ' + score
-        welcomespace.style.display = 'flex'
+        game_over()
       }
     })
   }, 3000)
+
+  if (game_state === 'game') {
+    //Keyboard events
+    document.addEventListener('keydown', (event) => {
+      if (!moving) {
+        sprite_img.src = 'img/sprite-walk.gif'
+        moving = true
+      } else if (event.key === 'ArrowUp') {
+        y -= speed
+      } else if (event.key === 'ArrowDown') {
+        y += speed
+      } else if (event.key === 'ArrowLeft') {
+        x -= speed
+        player.style.transform = 'scaleX(1)'
+      } else if (event.key === 'ArrowRight') {
+        x += speed
+        player.style.transform = 'scaleX(-1)'
+      } else {
+        return
+      }
+
+      event.preventDefault()
+      x = Math.max(0, Math.min(maxX, x))
+      y = Math.max(0, Math.min(maxY, y))
+
+      player.style.left = x + 'px'
+      player.style.top = y + 'px'
+
+      let all_mobs = document.querySelectorAll('.mobs')
+      all_mobs.forEach((mob) => {
+        const mobX = parseInt(mob.style.right)
+        const mobY = parseInt(mob.style.top)
+
+        if (Math.abs(mobX - x) < 10 && Math.abs(mobY - y) < 10) {
+          mob.remove()
+          score += 1
+          scoring.textContent = score
+        }
+      })
+    })
+
+    document.addEventListener('keyup', (event) => {
+      sprite_img.src = 'img/sprite-stand.gif'
+      moving = false
+    })
+
+    //Mouse events???
+    document.addEventListener('mousemove', (event) => {
+      player2.style.left = event.clientX
+      player2.style.top = event.clientY
+    })
+  }
 }
 
 async function getMobs() {
+  start_game()
   console.log('clicked button I think')
   let rand = Math.floor(Math.random() * 300) + 100
   console.log('rand number is ', rand)
@@ -194,33 +181,30 @@ async function getMobs() {
     )
 
     if (!response.ok) {
-      throw new Error(`Error:${response.status}`)
+      //throw new Error(`Error:${response.status}`)
+      console_msg.innerText =
+        'received error at Initial getmobs + ${response.status}'
     }
 
     mobs = await response.json()
-    start_game()
 
     if (mobs) {
-      const mobrand_summon = setInterval(() => {
+      const mobrand_summon = setInterval(async () => {
         let mob1 = document.createElement('div')
         mob1.style.position = 'absolute'
         let mobimg = document.createElement('img')
-        getMob(mob1, mobimg)
-        //mob1.src = 'img/Stirge-fly.gif'
-        // mob1.style.backgroundColor = 'red'
-        // mob1.style.width = '72px'
-        // mob1.style.height = '72px'
+        mob1.style.right = '0px'
+        mob1.style.width = 'max-content'
+        await getMob(mob1, mobimg)
+
         mob1.classList.add('mobs')
         mob1.style.top =
           Math.floor(Math.random() * game_win.clientHeight) + 'px'
         game_win.appendChild(mob1)
 
         mob1.addEventListener('mouseover', () => {
-          // mob1.remove(self)
           console.log('mouse over mob happening')
-          // HealthPoints -= 10
-          // HP.textContent = HealthPoints
-          // HP.style.width = (HealthPoints / 100) * 100 + '%'
+
           score += 1
           scoring.textContent = score
           game_win.removeChild(mob1)
@@ -236,26 +220,17 @@ async function getMobs() {
             clearTimeout(move_y)
           }
         }, 16)
-        // setTimeout(() => {
-        //   // game_win.replaceChildren(mob1)
-        //   //game_win.replaceChildren(mob1)
-        //   game_win.removeChild(mob1)
-        //   clearTimeout(move_y)
-        // }, 5000)
       }, 2000)
     }
   } catch (error) {
-    console_msg.innerText = 'recivederror at getmobs' + error
-    console.log('recivederror at getmobs', error)
+    console_msg.innerText = 'received error at getmobs' + error
+    console.log('recived error at getmobs', error)
   }
 }
 
 async function getMob(wrapper, obj) {
   let rand = mobs[Math.floor(Math.random() * mobs.length)]
   try {
-    //let rand = Math.floor(Math.random() * 1110100) + 100000
-    //let rand = Math.floor(Math.random() * 1110100) + 100000
-
     const response = await fetch(
       `https://maplestory.io/api/GMS/270/mob/${rand.id}/render/move`,
     )
@@ -266,12 +241,6 @@ async function getMob(wrapper, obj) {
     name.textContent = rand.name + ' lvl' + rand.level
     wrapper.appendChild(obj)
     wrapper.appendChild(name)
-
-    // fetch(`https://maplestory.io/api/GMS/270/mob/${rand.id}/render/move`)
-    //   .then((response) => response.blob())
-    //   .then((blob) => {
-    //     obj.src = URL.createObjectURL(blob)
-    //   })
   } catch (error) {
     console_msg.innerText = 'Error at getMob' + error
     console.log('Error', error)
@@ -281,3 +250,20 @@ async function getMob(wrapper, obj) {
 window.addEventListener('resize', () => {
   scoring.textContent = 'Did you resize the window? 🤔'
 })
+
+function game_over() {
+  game_state = 'gameover'
+  let endmsg = document.createElement('h1')
+  endmsg.innerText = 'Game Over! the final score is ' + score
+  let note = document.createElement('p')
+  note.innerHTML = 'press enter to reload'
+  welcome_space.replaceChildren()
+  welcome_space.appendChild(endmsg)
+  welcome_space.appendChild(note)
+  welcome_space.style.display = 'flex'
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+      location.reload
+    }
+  })
+}
