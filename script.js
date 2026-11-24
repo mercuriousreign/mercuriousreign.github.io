@@ -1,4 +1,3 @@
-import data from './mob.json' with { type: 'json' }
 //1. External JavaScript
 let contentbody = document.querySelector('body')
 let lightbtn = document.getElementById('lightbtn')
