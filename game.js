@@ -3,7 +3,7 @@ const player = document.getElementById('player')
 const sprite_img = document.getElementById('player_sprite')
 player.style.position = 'absolute'
 const player2 = document.getElementById('player2')
-
+const console_msg = document.getElementById('consolemsg')
 const scoring = document.getElementById('scoring')
 const HP = document.getElementById('HP')
 const gameover = document.getElementById('gameOvermsg')
@@ -29,7 +29,6 @@ player.style.left = x + 'px'
 player.style.top = y + 'px'
 
 if ((game_state = 'tutorial')) {
-  getMobs()
   document.addEventListener('keydown', (event) => {
     let welcomespace = document.getElementById('welcomespace')
 
@@ -39,6 +38,11 @@ if ((game_state = 'tutorial')) {
       welcomespace.style.display = 'none'
     }
   })
+}
+
+function start_game() {
+  game_state = 'game'
+  welcomespace.style.display = 'none'
 }
 
 if ((game_state = 'game')) {
@@ -93,51 +97,14 @@ if ((game_state = 'game')) {
   })
 
   const mobbat_summon = setInterval(() => {
-    let mob1 = document.createElement('img')
-    mob1.style.position = 'absolute'
-    mob1.src = 'img/Stirge-fly.gif'
-    // mob1.style.backgroundColor = 'red'
-    // mob1.style.width = '72px'
-    // mob1.style.height = '72px'
-    mob1.classList.add('mobs')
-    mob1.style.top = Math.floor(Math.random() * game_win.clientHeight) + 'px'
-    game_win.appendChild(mob1)
-
-    mob1.addEventListener('mouseover', () => {
-      // mob1.remove(self)
-      console.log('mouse over mob happening')
-      // HealthPoints -= 10
-      // HP.textContent = HealthPoints
-      // HP.style.width = (HealthPoints / 100) * 100 + '%'
-      score += 1
-      scoring.textContent = score
-      game_win.removeChild(mob1)
-    })
-
-    let pos_y = 0
-    let mob_speed = Math.floor(Math.random() * 3) + 1
-    let move_y = setInterval(() => {
-      pos_y += mob_speed
-      mob1.style.right = pos_y + 'px'
-      if (pos_y > game_win.clientWidth) {
-        mob1.remove()
-        clearTimeout(move_y)
-      }
-    }, 16)
-    // setTimeout(() => {
-    //   // game_win.replaceChildren(mob1)
-    //   //game_win.replaceChildren(mob1)
-    //   game_win.removeChild(mob1)
-    //   clearTimeout(move_y)
-    // }, 5000)
-  }, 2000)
-
-  const mobrand_summon = setInterval(() => {
+    let img_insert = document.createElement('img')
     let mob1 = document.createElement('div')
     mob1.style.position = 'absolute'
-    let mobimg = document.createElement('img')
-    getMob(mob1, mobimg)
-    //mob1.src = 'img/Stirge-fly.gif'
+    img_insert.src = 'img/Stirge-fly.gif'
+    mob1.appendChild(img_insert)
+    const name = document.createElement('p')
+    name.textContent = 'Stirge' + ' lvl' + 20
+    mob1.appendChild(name)
     // mob1.style.backgroundColor = 'red'
     // mob1.style.width = '72px'
     // mob1.style.height = '72px'
@@ -175,9 +142,14 @@ if ((game_state = 'game')) {
   }, 2000)
 
   const mobeye_summon = setInterval(() => {
-    let mob1 = document.createElement('img')
+    let img_insert = document.createElement('img')
+    let mob1 = document.createElement('div')
     mob1.style.position = 'absolute'
-    mob1.src = 'img/Evil_eye-move.gif'
+    img_insert.src = 'img/Evil_eye-move.gif'
+    mob1.appendChild(img_insert)
+    const name = document.createElement('p')
+    name.textContent = 'EvilEye' + ' lvl' + 29
+    mob1.appendChild(name)
 
     mob1.classList.add('mobs')
     mob1.style.top = Math.floor(Math.random() * game_win.clientHeight) + 'px'
@@ -211,13 +183,11 @@ if ((game_state = 'game')) {
   }, 3000)
 }
 
-//
-//2400374
-//let randurl = ` ${https://maplestory.io/api/GMS/270/mob/{rand}/render/move}`
-
 async function getMobs() {
+  console.log('clicked button I think')
   let rand = Math.floor(Math.random() * 300) + 100
   console.log('rand number is ', rand)
+
   try {
     const response = await fetch(
       `https://maplestory.io/api/GMS/270/mob?startPosition=${rand}&count=10`,
@@ -228,15 +198,54 @@ async function getMobs() {
     }
 
     mobs = await response.json()
+    start_game()
 
-    // fetch(`https://maplestory.io/api/GMS/270/mob?startPosition=20&count=10`)
-    //   .then((response) => response.json())
-    //   .then((json) => {
-    //     console.log('thejosns', json)
-    //     mobs = json
-    //     console.log('themobs')
-    //   })
+    if (mobs) {
+      const mobrand_summon = setInterval(() => {
+        let mob1 = document.createElement('div')
+        mob1.style.position = 'absolute'
+        let mobimg = document.createElement('img')
+        getMob(mob1, mobimg)
+        //mob1.src = 'img/Stirge-fly.gif'
+        // mob1.style.backgroundColor = 'red'
+        // mob1.style.width = '72px'
+        // mob1.style.height = '72px'
+        mob1.classList.add('mobs')
+        mob1.style.top =
+          Math.floor(Math.random() * game_win.clientHeight) + 'px'
+        game_win.appendChild(mob1)
+
+        mob1.addEventListener('mouseover', () => {
+          // mob1.remove(self)
+          console.log('mouse over mob happening')
+          // HealthPoints -= 10
+          // HP.textContent = HealthPoints
+          // HP.style.width = (HealthPoints / 100) * 100 + '%'
+          score += 1
+          scoring.textContent = score
+          game_win.removeChild(mob1)
+        })
+
+        let pos_y = 0
+        let mob_speed = Math.floor(Math.random() * 3) + 1
+        let move_y = setInterval(() => {
+          pos_y += mob_speed
+          mob1.style.right = pos_y + 'px'
+          if (pos_y > game_win.clientWidth) {
+            mob1.remove()
+            clearTimeout(move_y)
+          }
+        }, 16)
+        // setTimeout(() => {
+        //   // game_win.replaceChildren(mob1)
+        //   //game_win.replaceChildren(mob1)
+        //   game_win.removeChild(mob1)
+        //   clearTimeout(move_y)
+        // }, 5000)
+      }, 2000)
+    }
   } catch (error) {
+    console_msg.innerText = 'recivederror at getmobs' + error
     console.log('recivederror at getmobs', error)
   }
 }
@@ -264,6 +273,7 @@ async function getMob(wrapper, obj) {
     //     obj.src = URL.createObjectURL(blob)
     //   })
   } catch (error) {
+    console_msg.innerText = 'Error at getMob' + error
     console.log('Error', error)
   }
 }
